@@ -1,6 +1,5 @@
 import os
 import shutil
-import pprint
 
 def main():
     imagenes = ('bmp', 'gif', 'jpg', 'jpeg', 'jpe', 'jfif', 'tif','tiff', 'png')
