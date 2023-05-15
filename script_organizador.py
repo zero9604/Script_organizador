@@ -1,22 +1,44 @@
 import os
 import shutil
 import pprint
+
 def main():
     imagenes = ('bmp', 'gif', 'jpg', 'jpeg', 'jpe', 'jfif', 'tif','tiff', 'png')
+    audio = ('wav', 'wave', 'aiff', 'pcm', 'flac', 'm4a','wma', 'wmv', 'mp3', 'ogg', 'aac')
+    ejecutables = ('exe')
+    pdf = ('pdf')
+    office = ('doc', 'docx', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx')
+
     # Creamos carpetas
     carpetas()
 
     # Listamos los archivos en el directorio actual
     archivos = os.listdir()
-    pprint.pprint(archivos)
-    print('imag.en gif.gif'.split('.'))
+
+
+    for archivo in archivos:
+        if os.path.isfile(archivo):
+            extension = archivo.split('.')[-1]
+
+            if extension in imagenes:
+                mover(archivo, 'Downloaded Pictures')
+            elif extension in audio:
+                mover(archivo, 'Downloaded Music')
+            elif extension in pdf:
+                mover(archivo, 'Downloaded PDFs')
+            elif extension in ejecutables:
+                mover(archivo, 'Downloaded Executables')
+            elif extension in office:
+                mover(archivo, 'Downloaded Office Files')
+
+
 
 
 
 
 def carpetas():
 
-    directorios = ('Downloaded Pictures','Downloaded Music','Downloaded PDFs','Downloaded Executables')
+    directorios = ('Downloaded Pictures','Downloaded Music','Downloaded PDFs','Downloaded Executables', 'Downloaded Office Files')
     archivos = os.listdir()
 
     for i in directorios:
@@ -29,9 +51,10 @@ def carpetas():
             print(f'La carpeta {i} ya existia.')
 
 def mover(archivo, dest):
-
     # mueve un archivo desde la carpeta actual a la carpeta "dest"
     shutil.move(archivo, dest + '/' +  archivo)
+
+
 
 
 
